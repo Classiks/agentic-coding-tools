@@ -6,6 +6,7 @@ to an available file. Referenced instructions load when needed, not automaticall
 
 | Need | Skills |
 | --- | --- |
+| Apply the writing style throughout work | unslop, retaining its "Must always apply" instruction |
 | Stress-test an idea | grilling |
 | Interview with terminology and documentation | grill-with-docs, combining grilling and domain-modeling |
 | Refine terms and design decisions | domain-modeling |

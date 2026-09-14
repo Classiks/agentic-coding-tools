@@ -59,7 +59,9 @@ class PrepareSkillsTests(unittest.TestCase):
         result = self.run_script("--all")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertNotIn("Reference to omitted skill:", result.stdout)
-        self.assertEqual(len(list(self.output.iterdir())), 17)
+        expected = {p.name for p in (self.source / "skills").iterdir()
+                    if (p / "SKILL.md").is_file()}
+        self.assertEqual({p.name for p in self.output.iterdir()}, expected)
 
     def test_invalid_selections_do_not_create_output(self):
         for args in [[], ["--all", "--include", "grilling"], ["--include"],
