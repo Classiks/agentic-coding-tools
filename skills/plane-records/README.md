@@ -11,10 +11,16 @@ belong there. Implementation and verification remain separate methods.
 - A compatibility record describing which operations work through which transport.
 
 Use [configuration](references/configuration.md) to supply project values and
-[transport](references/transport.md) to check the required capabilities. Copying the skill
-installs neither a server nor a helper. If an existing launcher calls a helper inside an
-older plane-work installation, retain that helper until its replacement is configured
-and tested. The old workflow itself is not a dependency of this skill.
+[transport](references/transport.md) to check the required capabilities. The skill includes [a REST helper](scripts/plane_rest.py) using Python 3.10+ and its
+standard library. It installs no server or packages. Configure `PLANE_BASE_URL`,
+`PLANE_WORKSPACE_SLUG`, `PLANE_SERVICE_EMAIL`, and `PLANE_SERVICE_PASSWORD` in the
+existing environment, or set `PLANE_SECRETS_FILE` to a private `KEY=value` file.
+Existing environment values take precedence; the file is read literally, not executed.
+
+Point the deployment's `rest_helper` or existing launcher at the installed script.
+Keep credentials in deployment configuration, outside this skill. Use only operations
+verified for that deployment; shipping the helper does not establish compatibility.
+
 
 ## Capabilities and limits
 

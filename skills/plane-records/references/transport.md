@@ -77,9 +77,10 @@ listing; otherwise report the verification limitation rather than infer success.
 The existing helper reads its credentials from the established environment or a
 configured secrets file and performs session authentication itself. Never read or
 print those credentials to construct a call. It offers no generic work-item CRUD,
-relation, or comment fallback. No new helper is bundled or installed here.
+relation, or comment fallback. The bundled `scripts/plane_rest.py` implements these
+recipes using Python 3.10+ and the standard library. Select it through deployment
+configuration; never switch transport merely because the file is present.
 
-A configured launcher may still call a script inside the installed plane-work skill.
-That is an explicit existing runtime dependency: do not remove that installation until
-the deployment supplies an independent tested helper. This package does not contain
-an out-of-tree symlink or hard-code that deployment path.
+When replacing an old plane-work installation, point its launcher at the installed
+plane-records helper and explicitly configure PLANE_SECRETS_FILE or the required
+environment variables. The helper has no machine-specific secrets-file default.
