@@ -23,3 +23,7 @@
 | Delegated verification is selected | Provide actual evidence and limits without requiring or claiming human line-by-line review |
 | Full ownership includes a binary artifact that cannot be inspected | Report the uncovered artifact; do not declare full review complete |
 | Review bookkeeping records its own confirmation | Disclose bookkeeping without creating an infinite self-review loop; other docs remain in scope |
+| Three simple portions are confirmed; two complex ones remain | Show 3/5 confirmed plus a rough effort estimate reflecting remaining complexity, not automatic 60% completion |
+| Current portion is presented but unconfirmed | Show progress based on confirmed work; do not count presentation as completion |
+| Scope grows or confirmed work needs renewed review | Revise the estimated total and effort progress, preserving actual coverage gaps |
+| Remaining scope is unclear | Give an explicitly uncertain estimate or qualitative remaining effort rather than a precise percentage |

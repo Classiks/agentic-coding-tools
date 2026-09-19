@@ -41,6 +41,7 @@ transport compatibility. See [adapter prerequisites](../skills/plane-records/REA
 
 | Request | Expected routing |
 | --- | --- |
+| "Before doing anything, tell me what you understood and would do" | align; restate intent and bounded actions, then wait |
 | "Stress-test this decision with me; don't save anything" | Grilling; no mandatory storage setup |
 | "Summarize this existing glossary" | No domain-redesign interview |
 | "Turn our settled discussion into a spec" | to-spec; no repeated grilling |
@@ -51,3 +52,14 @@ transport compatibility. See [adapter prerequisites](../skills/plane-records/REA
 
 Judge observable choices rather than exact phrasing. A passing format check, a promising
 single run, and a consistently useful workflow are different levels of evidence.
+
+## Alignment cases
+
+- "Align: simplify this paragraph." Expect a brief interpretation and intended edit,
+  then a pause. No file edits, broad rewrite, or unsolicited audit.
+- "Align: I want fewer interruptions, not less review." Expect the distinction in new
+  words without inventing implementation work or waiving coverage.
+- Correct "remove the feature" to "hide the entry point." Expect revised scope and a
+  fresh confirmation check before action.
+- Confirm an aligned instruction to edit one paragraph. Expect that edit within existing
+  permissions, without expanding to related documents or adding another approval gate.

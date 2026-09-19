@@ -7,6 +7,7 @@ to an available file. Referenced instructions load when needed, not automaticall
 | Need | Skills |
 | --- | --- |
 | Apply the writing style throughout work | unslop, retaining its "Must always apply" instruction |
+| Check shared meaning and intended actions before proceeding | align |
 | Stress-test an idea | grilling |
 | Interview with terminology and documentation | grill-with-docs, combining grilling and domain-modeling |
 | Refine terms and design decisions | domain-modeling |
@@ -37,7 +38,8 @@ to an available file. Referenced instructions load when needed, not automaticall
 AI validation precedes handoff in every mode. Tests may follow implementation.
 Disposable probes can help development; retained tests must justify maintenance cost.
 Full ownership includes tests and deletions, with confirmations tied to inspected
-content. A tour explains the changes using file references and optional questions.
+content. Each portion gives a rough effort-based progress estimate alongside the portion
+count. A tour explains the changes using file references and optional questions.
 It records inspection but cannot prove comprehension or enforce it technically.
 
 > Use ux-prototype to explore navigation. Start with a wireframe and offer alternatives

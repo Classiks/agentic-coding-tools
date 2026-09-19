@@ -36,6 +36,15 @@ exemption.
 
 ## Present one portion
 
+Start each portion with a brief progress estimate: confirmed portions out of the current
+planned total, plus roughly how much review effort is complete and what remains.
+Weight conceptual complexity, unfamiliar behavior, and discussion so far, not just line
+or portion counts. Use a rounded estimate or range; flag an uncertain total rather than
+invent precision. For example: "2/5 portions confirmed, roughly 25-35% of review effort
+complete; the state machine and its tests are still ahead." Exclude the current portion
+until confirmed. Re-estimate when scope, difficulty, or reopened coverage changes; this
+estimate never substitutes for actual coverage.
+
 Explain purpose, behavior, consequential choices, and how tests support it. Distinguish
 observations and documented rationale from inference. Navigate with actual `file:line`
 or `file:line-range` references, using clickable start-line links where supported.
