@@ -20,6 +20,7 @@ Check both undocumented code changes and outdated documented claims:
 | Code contradicts an old ADR | Record the discrepancy; invent no historical rationale or accepted successor |
 | Stale test evidence or changed reviewed content | Mark affected evidence or review for reassessment |
 
-Age and missing access do not prove drift. Persist in-scope updates through the adapter,
-link existing findings, and report checked scope, code state, observations, and gaps.
+Age and missing access do not prove drift. Use project knowledge to save in-scope
+updates to the configured Markdown files. Link existing findings and report checked
+scope, code state, observations, and gaps.
 A partial reconciliation establishes neither project-wide freshness nor runtime correctness.

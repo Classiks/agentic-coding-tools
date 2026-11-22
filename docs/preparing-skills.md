@@ -8,10 +8,10 @@ available on Linux/macOS. It downloads nothing and changes no agent configuratio
 ./scripts/prepare-skills.sh --output ./prepared --all
 
 ./scripts/prepare-skills.sh --output ./work-skills --all \
-  --exclude plane-records ux-prototype
+  --exclude grilling grill-with-docs
 
 ./scripts/prepare-skills.sh --output ./review-skills \
-  --include guided-review verify-change project-knowledge local-records
+  --include guided-review project-knowledge reconcile-knowledge
 ```
 
 Both `--include` and `--exclude` accept multiple space-separated names and repeated
@@ -32,10 +32,8 @@ Markdown links to omitted skills, including links in supporting files, without a
 them automatically. Read the referring instruction to decide whether that route applies.
 The report covers file links, not arbitrary prose references or host configuration.
 
-For example, guided-review uses verify-change for validation, but a configured knowledge
-adapter is needed only for durable sources or progress. A link alone cannot distinguish
-an unconditional prerequisite from an optional handoff. Include skills needed by the
-workflow you intend to use.
+For example, guided-review links to project-knowledge for saving progress across
+sessions. Include the skills you need for your workflow.
 
 ## Connect to an agent host
 
@@ -66,8 +64,7 @@ version. [Duplicate-root report](https://github.com/anomalyco/opencode/issues/32
 Prepare the new selection into a fresh directory and compare it with the previous bundle.
 Record the source revision in your existing setup process. When deploying an update,
 preserve local adaptations and remove obsolete files deliberately; preparation does not
-synchronize an existing installation. Update project references before removing a selected
-adapter or method.
+synchronize an existing installation. Update project references before removing a skill.
 
 Run the script's regression tests with `python3 -m unittest discover -s scripts/tests -v`.
 Python is used for these development tests only, not bundle preparation.

@@ -17,9 +17,9 @@ uninspectable artifacts remain coverage gaps. No mechanical-change exemption app
 
 ## Track confirmed content
 
-Use a compact session record. For durable resumption, apply
-[project-knowledge](../../project-knowledge/SKILL.md) and store it with the work item.
-Ordinary review can proceed without configuring storage.
+Use a compact session record. When review needs to resume in a later session, use
+[project-knowledge](../../project-knowledge/SKILL.md) to save it with the local
+Markdown work item. Ordinary review can proceed without configuring storage.
 
 Record the baseline, complete inventory, mode, and for each portion:
 

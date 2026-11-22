@@ -13,8 +13,8 @@ Investigate accessible facts yourself. Distinguish observations, assumptions, an
 user decisions. Probe concrete edge cases; stop when the agreed scope is sufficiently
 resolved, leaving remaining questions visible.
 
-Use [domain-modeling](../domain-modeling/SKILL.md) when terminology or ADRs need work,
-within the same interview. Use [to-spec](../to-spec/SKILL.md) for requested synthesis.
+Use [domain-modeling](../domain-modeling/SKILL.md) within the same interview when
+terminology or ADRs need work.
 For durable sources or results, follow [project-knowledge](../project-knowledge/SKILL.md).
 Discussion alone grants no implementation authority.
 

@@ -6,6 +6,10 @@ import tempfile
 import unittest
 
 REPO = Path(__file__).resolve().parents[2]
+EXPECTED_SKILLS = {
+    "align", "coding-principles", "diagnose-bug", "domain-modeling", "grill-with-docs",
+    "grilling", "guided-review", "project-knowledge", "reconcile-knowledge", "unslop",
+}
 
 
 class PrepareSkillsTests(unittest.TestCase):
@@ -27,41 +31,37 @@ class PrepareSkillsTests(unittest.TestCase):
         )
 
     def test_multiple_includes_repeated_and_complete_folders(self):
-        result = self.run_script("--include", "guided-review", "verify-change",
+        result = self.run_script("--include", "guided-review", "align",
                                  "--include", "guided-review")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertEqual({p.name for p in self.output.iterdir()},
-                         {"guided-review", "verify-change"})
-        for name in ("guided-review", "verify-change"):
+                         {"guided-review", "align"})
+        for name in ("guided-review", "align"):
             for source in (self.source / "skills" / name).rglob("*"):
                 if source.is_file():
                     # Compare by relative skill path, including references and licenses.
                     copied = self.output / name / source.relative_to(self.source / "skills" / name)
                     self.assertEqual(copied.read_bytes(), source.read_bytes())
         self.assertIn("Reference to omitted skill: project-knowledge", result.stdout)
-        self.assertNotIn("Reference to omitted skill: verify-change", result.stdout)
         self.assertFalse((self.output / "project-knowledge").exists())
 
     def test_multiple_exclusions_and_repeated_flags(self):
-        result = self.run_script("--all", "--exclude", "plane-records", "ux-prototype",
+        result = self.run_script("--all", "--exclude", "grill-with-docs", "unslop",
                                  "--exclude", "grilling")
         self.assertEqual(result.returncode, 0, result.stderr)
-        expected = {p.name for p in (self.source / "skills").iterdir()}
         self.assertEqual({p.name for p in self.output.iterdir()},
-                         expected - {"plane-records", "ux-prototype", "grilling"})
+                         EXPECTED_SKILLS - {"grill-with-docs", "unslop", "grilling"})
 
     def test_exclusions_win_independent_of_order(self):
-        result = self.run_script("--exclude", "grilling", "--include", "grilling", "to-spec")
+        result = self.run_script("--exclude", "grilling", "--include", "grilling", "align")
         self.assertEqual(result.returncode, 0, result.stderr)
-        self.assertEqual([p.name for p in self.output.iterdir()], ["to-spec"])
+        self.assertEqual([p.name for p in self.output.iterdir()], ["align"])
 
     def test_full_bundle_has_no_omitted_references(self):
         result = self.run_script("--all")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.assertNotIn("Reference to omitted skill:", result.stdout)
-        expected = {p.name for p in (self.source / "skills").iterdir()
-                    if (p / "SKILL.md").is_file()}
-        self.assertEqual({p.name for p in self.output.iterdir()}, expected)
+        self.assertEqual({p.name for p in self.output.iterdir()}, EXPECTED_SKILLS)
 
     def test_invalid_selections_do_not_create_output(self):
         for args in [[], ["--all", "--include", "grilling"], ["--include"],

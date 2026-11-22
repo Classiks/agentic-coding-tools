@@ -24,8 +24,8 @@ A quality preference alone does not expand scope.
 
 Surface substantive unresolved issues in the handoff. Persist them through
 [project-knowledge](../project-knowledge/SKILL.md) when durable project records are in
-scope; use [requirements](../requirements/SKILL.md) in requirements-driven work.
-Do not create an independent backlog or treat discovery as permission to fix.
+scope. Update the relevant record and capture distinct issues separately. Discovery
+alone does not authorize a fix.
 
 ## Abstractions that remove knowledge
 
@@ -72,9 +72,9 @@ complexity than value and important behavior remains straightforward to test.
 Treat maintained tests as readable accounts of behavior: explicit expectations, small
 fixtures, and simple setup. Prefer a little repetition over clever test infrastructure
 that obscures the scenario. Development probes may be disposable or implementation-
-specific. Before each review-ready slice, every retained new or changed test must earn
-its maintenance cost through meaningful protection; curate them using
-[the verification guidance](../verify-change/references/checks.md). No mandatory TDD.
+specific. Before handoff, keep new or changed tests that can detect a meaningful
+regression or protect a behavior or boundary. Remove disposable probes and rerun
+affected checks. Tests may follow implementation.
 
 For longer functions and important entry points, a one-to-three-sentence introduction
 may frame purpose and flow even when the code is self-explanatory. Document consequential

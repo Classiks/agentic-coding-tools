@@ -1,49 +1,65 @@
 ---
 name: project-knowledge
-description: Resolve authoritative project records and resume or persist work through the configured knowledge adapter.
+description: Configure, find, and maintain project records in local Markdown, including resuming active work.
 ---
 
 # Project knowledge
 
-Read the applicable `Project knowledge` section in AGENTS.md, contract version 1.
-It identifies the primary store, entry point, adapter, explicit exceptions, and
-resumption procedure. Each record has one authority; unspecified information types
-use the primary store. Code and tests remain repository artifacts. A snapshot names
-its source and captured state; it is not a second maintained authority.
+Use the local Markdown paths in the applicable `Project knowledge` section of
+`AGENTS.md`. Keep records under the configured path unless the section maps them
+elsewhere. Use the project's conventions for filenames and structure. Each record has
+one maintained source. A snapshot should identify its source and captured state.
 
-Load only the adapter for the information concerned, using its supplied location.
-An adapter may be a skill or complete inline instructions. Read linked instructions
-when needed; do not reload unchanged material already in context or invoke an active
-caller recursively. Missing configuration blocks authoritative persistence, not
-useful discussion or drafting. Use [setup-project](../setup-project/SKILL.md) for setup.
-A task-specific override does not silently rewrite project configuration.
+## Configure on request
+
+Inspect applicable instructions and existing records before writing or updating the
+section. Preserve established conventions and unrelated instructions. Ask about
+conflicting sources or missing consequential choices. Changing the configuration
+does not move records. Verify any existing paths you reference and identify gaps.
+
+A short section can look like this. Resolve paths relative to the containing
+`AGENTS.md`. Include glossary and ADR paths only when an explicit mapping helps.
+
+```markdown
+## Project knowledge
+
+- Path: `docs/project/`
+- Active work: Start at `docs/project/tasks.md` and follow its links to specs and continuation notes.
+- Glossary: `CONTEXT.md`
+- ADRs: `docs/decisions/`
+```
+
+Use actual paths and describe how to find active work, even if the project keeps it all
+in one file. If the destination is unknown, resolve it before saving. Discussion and
+drafting can continue without setup.
 
 ## Read and resume
 
-Retrieve current originals, not remembered thread content. Start at the configured
-entry and active item, then follow relevant requirements, terms, decisions, and evidence.
-Resolve ambiguity between active tasks. Inspect the actual working tree, including
-new files; a commit alone misses uncommitted changes.
+Read the current records, starting where the section directs you. Identify the
+intended work item and follow relevant specs, terms, decisions, and evidence. Inspect
+the actual working tree, including staged, unstaged, and untracked changes.
 
-When continuity is needed, keep a short record with the work item:
+When continuity matters, save a short note with the work item. Include the objective,
+source IDs, decisions and open questions, completed work, the next step, and any
+outstanding human review. Tie evidence and confirmations to the state they cover. A continuation
+summary alone cannot establish verification, confirmation, or authority. Keep
+interaction preferences in the separate `Agent interaction` section of `AGENTS.md`.
 
-- Objective and source IDs; decisions and open questions.
-- Completed work, next step, and existing authority with its source.
-- Outstanding human review and evidence tied to the checked content state.
+## Write and check
 
-Unknown authority stays unknown. A continuation summary cannot establish current
-verification or human confirmation by itself. Interaction preferences belong in a
-separate `Agent interaction` section in AGENTS.md, not project records.
+Search by ID and content before creating a record. Read the current file before
+updating it, preserve unrelated contributions and decision status, and surface
+conflicts. For new specification work without an established layout, start with
+`spec.md` and add `tasks.md` if a separate task list helps. Create only files with
+content the task needs.
 
-## Write and reconcile
+Give independently referenced records stable IDs unique within their scope and keep
+those IDs through renames and reordering. Use relative links and IDs for references.
+Link new work from the configured starting point and tasks to their specs and actual
+blockers. Read back saved content, check affected links, and report paths, IDs, and
+any partial or unsaved work.
 
-The method supplies content and decision status; the adapter supplies storage mechanics.
-Search before creating, read current content before updating, preserve contributions,
-and verify saved results. Surface conflicts and partial writes. Routine authorized
-documentation needs no extra approval; saving it grants no new action permissions.
-
-At handoff, check whether changed behavior affects requirements, terminology, decisions,
-or references. Update supported descriptive facts and record unresolved discrepancies.
-Never rewrite desired behavior to fit code. Use [reconcile-knowledge](../reconcile-knowledge/SKILL.md)
-for a requested catch-up. Age alone does not prove drift. If access fails, report unsaved
-work and continue whatever does not depend on that access.
+At handoff, check whether the change leaves descriptive facts or references stale.
+Update supported descriptions within scope and record unresolved discrepancies.
+Never rewrite desired behavior to fit code. Age alone is insufficient evidence of
+drift. Use [reconcile-knowledge](../reconcile-knowledge/SKILL.md) for requested catch-up.

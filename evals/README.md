@@ -5,16 +5,13 @@ Run static checks and host discovery separately from these behavioral evaluation
 
 | Area | Cases |
 | --- | --- |
-| Requirements and authority | [requirements](requirements.md) |
-| Source selection, resumption, drift | [project knowledge](project-knowledge.md) |
+| Local Markdown setup, resumption, and drift | [project knowledge](project-knowledge.md) |
 | Coverage and conversation | [guided review](guided-review.md) |
-| Implementation, evidence, diagnosis | [implementation and verification](implementation-verification.md) |
-| Artifact choice and variants | [UX/prototyping](ux-prototype.md) |
 
 ## Run on actual hosts
 
-Use a disposable local project or an explicitly authorized fixture area. Give the agent
-the task and project inputs, not the expected-results table. Record host/model, installed
+Use a disposable local project. Give the agent the task and project inputs, not the
+expected-results table. Record host/model, installed
 skill revision, prompt, fixture state, trace, resulting artifacts, and observed failures.
 Compare with the previous revision or without the skill under equivalent conditions.
 Repeat important cases before drawing conclusions about consistency.
@@ -25,30 +22,29 @@ Start with these three exercises, separately in private Codex and work OpenCode:
    Let the agent validate and begin the tour. Ask a question without confirming, then
    explicitly confirm one portion. Change that portion before resumption. Check that
    coverage remains pending where appropriate and renewed review reflects the change.
-2. A confirmed requirement rejects expired invitations while code accepts them. Configure
-   local records and ask for read-only reconciliation. Check that the agent records a
-   discrepancy without fixing code or changing desired behavior. Then authorize the fix
-   and inspect its actual regression evidence and retained tests.
-3. A navigation question with two plausible approaches and no app/tool installation.
-   Ask for an initial wireframe and an offer of alternatives. Check artifact choice,
-   comparisons when requested, and honest limits on usability claims.
-
-For Plane, use its configured test area to exercise update, creation/discovery, conflict,
-and uncertain-write cases only when authorized. Local tests cannot establish Plane
-transport compatibility. See [adapter prerequisites](../skills/plane-records/README.md).
+2. A confirmed requirement rejects expired invitations while code accepts them. Set
+   the project Markdown path in `AGENTS.md` and ask for read-only reconciliation.
+   Check that the agent reports the discrepancy and leaves code and records intact.
+3. Ask for one interview about invitations and memberships in a project with an
+   existing glossary. Request a spec after settling the decisions. Check that the
+   agent links existing terms and decisions, includes acceptance examples, and
+   carries forward open choices without restarting the interview.
 
 ## Check activation separately
 
 | Request | Expected routing |
 | --- | --- |
 | "Before doing anything, tell me what you understood and would do" | align; restate intent and bounded actions, then wait |
-| "Stress-test this decision with me; don't save anything" | Grilling; no mandatory storage setup |
-| "Summarize this existing glossary" | No domain-redesign interview |
-| "Turn our settled discussion into a spec" | to-spec; no repeated grilling |
-| "Find why this intermittent failure occurs; don't edit" | diagnose-bug; no repair or commit |
+| "Stress-test this decision with me. Keep it in chat." | grilling; continue without setting up storage |
+| "Refine the glossary terms for invitations and memberships" | domain-modeling; resolve terminology against concrete scenarios |
+| "Summarize this existing glossary" | Read the glossary without opening a domain-design interview |
+| "Turn our settled discussion into a spec" | grill-with-docs synthesizes it without repeating the interview |
+| "Find why this intermittent failure occurs. Keep the investigation read-only." | diagnose-bug; collect evidence and report likely causes |
 | "Explain the changed lines in small portions" | guided-review |
-| "Make this spelling correction" | No whole requirements or diagnosis workflow |
-| "Use local records in this sandbox" | local-records; no Plane dependency |
+| "Review these module boundaries for long-term maintenance" | coding-principles; assess which decisions each module owns |
+| "Cut the stock phrasing in this handoff" | unslop; rewrite while preserving meaning |
+| "Configure our records under `notes/product/`" | project-knowledge; set the path and active-work directions in `AGENTS.md` |
+| "Catch the docs up after the refactor" | reconcile-knowledge; compare the relevant local records with current code |
 
 Judge observable choices rather than exact phrasing. A passing format check, a promising
 single run, and a consistently useful workflow are different levels of evidence.

@@ -15,15 +15,15 @@ Compare performance under comparable conditions. Inspect code even without repro
 but label suspected causes honestly. If attempts stop producing evidence, report what
 is known and what observation or access is missing.
 
-Use [project-knowledge](../project-knowledge/SKILL.md) for durable requirements and
-[requirements](../requirements/SKILL.md) for findings when that mode is selected.
+Use [project-knowledge](../project-knowledge/SKILL.md) when reading expected behavior
+or recording substantive findings. Record expected and observed behavior, reproduction
+details, the supported cause, and any evidence of a fix.
 Diagnosis alone does not authorize fixes. Within an existing mandate, fix the supported
 in-scope cause and add useful regression coverage; test-first is optional.
 
-Remove only your disposable diagnostic changes, preserve useful tests and others' work,
-and recheck after cleanup. Return findings to an active implementation/verification
-workflow. If working independently on an authorized fix, use
-[verify-change](../verify-change/SKILL.md) for final checks. Report cause, evidence,
-changes, and uncertainty. Unrelated bugs remain findings.
+Remove only your disposable diagnostic changes and preserve useful tests and others'
+work. For an authorized fix, check the reported failure and run the applicable
+repository checks against the final state. Report cause, evidence, changes, and
+uncertainty. Unrelated bugs remain findings.
 
 Adapted from [Matt Pocock](https://github.com/mattpocock/skills/blob/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/diagnosing-bugs/SKILL.md). MIT, see LICENSE.

@@ -20,8 +20,7 @@ without context, or write one on request. Include context, actual decision, rati
 and useful alternatives or consequences. Mark proposals explicitly. Never infer
 historical reasons from code; link superseding decisions without erasing predecessors.
 
-The glossary owns language, the specification desired behavior, and ADRs rationale.
-Link instead of copying. Configuration selects each location; a local CONTEXT.md does
-not imply local ADRs.
+Link to the glossary for terms, the specification for desired behavior, and ADRs for
+decision rationale. Follow the project's configured Markdown paths.
 
 Adapted from [Matt Pocock](https://github.com/mattpocock/skills/blob/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/domain-modeling/SKILL.md). MIT, see LICENSE.

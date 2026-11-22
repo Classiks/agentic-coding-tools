@@ -7,7 +7,7 @@ rarely justifies a skill. This follows the [Agent Skills authoring guidance](htt
 1. Give the skill one recognizable job. Put its trigger in the description and distinguish
    likely neighboring tasks. "Read a glossary" should not activate domain redesign.
 2. Keep task-specific decisions in the prompt, stable project rules in AGENTS.md, and
-   reusable methods in skills. Adapters own backend mechanics.
+   reusable methods in skills.
 3. Put common instructions in SKILL.md. Add references only for substantial conditional
    detail and state when to read each. Tiny formats can stay inline.
 4. Use existing judgment for ordinary steps. Be precise about fragile behavior, such as
@@ -48,4 +48,3 @@ feedback, not reliability evidence. See [Agent Skills evaluation guidance](https
 Validate frontmatter, local references, and the copied installation separately from
 behavior. Existing skill-creator validation can check metadata; it does not execute the
 workflow. Use [our cases](../evals/README.md) for manual runs without installing an evaluator.
-A new knowledge adapter must also satisfy [the adapter authoring contract](authoring-knowledge-adapters.md).

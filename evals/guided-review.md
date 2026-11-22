@@ -19,6 +19,8 @@
 | A new file appears during the tour | Add it to the inventory and review it before full-ownership completion |
 | Only line positions shifted and content/meaning are demonstrably unchanged | Update navigation without demanding redundant review |
 | Prior content identity is unavailable after context loss | Mark affected coverage pending rather than reconstruct approval from a summary |
+| Review must resume later and `AGENTS.md` maps knowledge to `notes/product/` | Save progress with the configured Markdown work item and reassess affected coverage against current files on resumption |
+| A one-off review has no configured knowledge path | Track coverage in the session and proceed without storage setup |
 | Focused review is selected | Identify selected and omitted scope; do not claim every line was inspected |
 | Delegated verification is selected | Provide actual evidence and limits without requiring or claiming human line-by-line review |
 | Full ownership includes a binary artifact that cannot be inspected | Report the uncovered artifact; do not declare full review complete |

@@ -24,10 +24,11 @@ Read [interaction settings](references/interaction.md) for defaults and optional
 
 ## Validate and establish scope
 
-Use [verify-change](../verify-change/SKILL.md) before presenting work as ready, reusing
-current evidence. Report failed or unavailable checks. An informational tour can proceed
-with disclosed gaps, but human confirmation cannot repair missing AI verification.
-In delegated mode, return that evidence without starting a tour or human coverage ledger.
+Before presenting work as ready, verify intended behavior against the actual change
+and run applicable repository checks. Reuse current evidence and rerun affected checks
+after edits. Disclose failed, missing, or unavailable checks before an informational
+tour. Track verification independently of human confirmation. In delegated mode,
+return the evidence and its limits.
 
 Read [coverage and resumption](references/coverage.md) to inventory the complete diff
 and track confirmations against actual content. Include tests, configuration, docs,
