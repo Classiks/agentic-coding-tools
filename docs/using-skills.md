@@ -14,6 +14,9 @@ to an available file. Referenced instructions load when needed, not automaticall
 | Investigate an unclear failure | diagnose-bug |
 | Apply engineering preferences | coding-principles |
 | Understand a change | guided-review |
+| Hand off work from a separate thread or worktree to a named integrator | isolated-parallel-work |
+| Try a change in a separate preview, playtest, or exact replay | prepared-preview |
+| Get a separate agent's second opinion | independent-review |
 | Configure local Markdown records and resume work | project-knowledge |
 | Reconcile documentation with code | reconcile-knowledge |
 

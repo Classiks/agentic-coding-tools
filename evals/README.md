@@ -41,6 +41,9 @@ Start with these three exercises, separately in private Codex and work OpenCode:
 | "Turn our settled discussion into a spec" | grill-with-docs synthesizes it without repeating the interview |
 | "Find why this intermittent failure occurs. Keep the investigation read-only." | diagnose-bug; collect evidence and report likely causes |
 | "Explain the changed lines in small portions" | guided-review |
+| "Build this in a separate worktree and hand it to Morgan to integrate" | isolated-parallel-work checks the checkout and hands off the commit and evidence |
+| "Let me try the fix in a separate preview at the failing step" | prepared-preview verifies the exact build and entry point |
+| "Have another agent independently confirm this disputed result" | independent-review gives the reviewer the reproduction context and omits prior verdicts |
 | "Review these module boundaries for long-term maintenance" | coding-principles; assess which decisions each module owns |
 | "Cut the stock phrasing in this handoff" | unslop; rewrite while preserving meaning |
 | "Configure our records under `notes/product/`" | project-knowledge; set the path and active-work directions in `AGENTS.md` |

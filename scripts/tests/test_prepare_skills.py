@@ -15,7 +15,8 @@ except ModuleNotFoundError:
 REPO = Path(__file__).resolve().parents[2]
 EXPECTED_SKILLS = {
     "align", "coding-principles", "diagnose-bug", "domain-modeling", "grill-with-docs",
-    "grilling", "guided-review", "project-knowledge", "reconcile-knowledge", "unslop",
+    "grilling", "guided-review", "independent-review", "isolated-parallel-work",
+    "prepared-preview", "project-knowledge", "reconcile-knowledge", "unslop",
 }
 
 
