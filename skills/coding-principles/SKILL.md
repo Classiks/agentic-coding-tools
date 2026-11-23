@@ -1,87 +1,35 @@
 ---
 name: coding-principles
-description: >-
-  Apply this engineering style when selected for design, implementation, or review, scaling maintainability investment and cleanup scope to the task.
+description: Apply engineering design and maintenance preferences when selected for design, implementation, or review.
 ---
 
 # Coding principles
 
-Follow binding project rules and the selected investment level, defaulting to project
-expectations. Quality ambition does not determine cleanup scope or review coverage.
+- Follow project rules. Default investment to project expectations. Favor stable boundaries, readability, and explicit failures in long-lived code. Keep PoC choices clear and reversible, and revisit shortcuts when maintaining them.
+- Investment, cleanup authority, and review coverage are independent.
 
-## Design investment and scope
+| Cleanup scope | Work authorized |
+| --- | --- |
+| Requirement-focused (default) | Make needed structural fixes and abstractions, including in untouched files. Skip incidental cleanup. |
+| Related cleanup | Improve the additionally authorized area. |
+| Broader refactoring | Address the selected findings or architectural concern. |
 
-For long-lived code, invest in readability, stable boundaries, and explicit failures.
-For a PoC, keep code clear and favor inexpensive, reversible decisions. Useful generality
-can simplify either; speculative features cannot. Reassess shortcuts when maintaining a PoC.
+Report unresolved issues. When durable records are in scope, update the relevant record and capture distinct findings separately via [project-knowledge](../project-knowledge/SKILL.md). Discovery alone grants no fix authority.
 
-Cleanup scope defaults to **requirement-focused**: change what the requirement needs,
-including sensible abstractions and structural fixes that avoid degrading the design.
-Relevance is not limited to already touched files. Do not add incidental cleanup.
-With **related cleanup**, improve the additionally authorized area. With **broader
-refactoring**, address the explicitly selected findings or architectural concern.
-A quality preference alone does not expand scope.
+## Make callers know less
 
-Surface substantive unresolved issues in the handoff. Persist them through
-[project-knowledge](../project-knowledge/SKILL.md) when durable project records are in
-scope. Update the relevant record and capture distinct issues separately. Discovery
-alone does not authorize a fix.
+- A deep module owns knowledge or a decision. Its contract covers behavior, effects, ordering, and failures. Keep that contract simpler than the work it provides. Even one method can expose too many modes.
+- Ask what callers can stop knowing. Hide mechanics and centralize invariants. Keep consequential business decisions with their owners. Prefer domain operations over option bags, flags, and call-order protocols.
+- Design for current needs beyond one caller's incidental workflow. Avoid speculative features, forwarding layers, and merging different concepts because syntax matches. Extract when it hides knowledge, even without reuse.
+- In long-lived code, keep domain and application policy independent of infrastructure. Inject storage, clocks, IDs, randomness, and external clients through narrow collaborators at an explicit composition point. Keep pure computation in ordinary functions. Avoid hidden globals, service locators, and interfaces for every class. Simplify for scripts and PoCs when injection costs more than it adds and behavior stays testable.
 
-## Abstractions that remove knowledge
+## Keep code and tests readable
 
-Design a deep module around knowledge or a decision it owns. Its interface includes
-everything callers must understand: behavior, side effects, ordering, and failures,
-not just signatures. Keep that interface substantially simpler than what it provides.
-A single method with many modes can still be a complicated interface.
+- Name domain responsibilities precisely. Reconsider vague boundaries. Extract coherent concepts, hidden complexity, or side effects. Skip arbitrary function-length limits.
+- Prefer guard clauses and shallow nesting. Keep `else` when it clarifies exclusive branches. Infer obvious types and state types that clarify contracts or distinctions.
+- Follow repository formatting and lint rules. Avoid unrelated formatting. Use judgment beyond tool rules.
+- Skip busywork or coverage-padding tests. Retain only tests that verify meaningful behavior or boundaries. For each, ask what broken behavior it catches, what it misses, and whether it survives an internal refactor. Use explicit expectations, small fixtures, and clear setup, even with some repetition.
+- Tests may follow implementation. Temporary, sloppy, or implementation-specific probe tests are fine during development, but remove them before human handoff and rerun affected checks.
+- Document consequential contracts and constraints. A short introduction can orient readers in longer functions or important entry points. Use local comments for non-obvious reasons. Keep comments current and skip boilerplate.
 
-Keep functionality grounded in current needs, but avoid an interface shaped around one
-caller's incidental workflow. For example, a text model can delete a range while the UI
-interprets Backspace and selections. Do not add hypothetical features to appear general.
-
-Before extracting or introducing a module, ask what callers can stop knowing. Hide
-implementation mechanics and centralize invariants; preserve consequential business
-choices at the level that owns them. Prefer clear domain operations over option bags,
-mode flags, or leaked call-order protocols. Reuse is not a prerequisite. Conversely,
-similar syntax is not enough reason to merge different concepts. Avoid forwarding
-layers that add navigation without hiding knowledge.
-
-## Structure and readability
-
-- Name operations and state by domain meaning and responsibility. Make intended use
-  understandable without opening the implementation; vague names can signal a muddled
-  boundary, not merely a naming problem.
-- Keep functions coherent, without arbitrary line limits. Extract to name a concept,
-  hide complexity, or separate policy and side effects, not to fragment a readable flow.
-- Prefer guard clauses for invalid inputs and early exits. Reduce deep nesting, but
-  retain `else` when it makes mutually exclusive branches easier to understand.
-- Prefer inferred types when the type is clear from the code. Use explicit types when
-  needed for a contract, meaningful distinction, or clarity; for example, Java `var`
-  is welcome when the initializer makes the type apparent.
-- Follow the repository formatter and linter. Do not introduce a competing style or
-  reformat unrelated files. Human judgment handles what formatting tools cannot.
-
-For long-lived code, keep domain/application policy independent of infrastructure.
-Inject meaningful side effects through narrow collaborators at an explicit composition
-point: storage, clocks, IDs, randomness, and external clients. Keep pure computation as
-ordinary functions; avoid hidden globals, service locators, and interfaces for every
-class. Small scripts and PoCs may use simpler arrangements when injection adds more
-complexity than value and important behavior remains straightforward to test.
-
-## Tests and explanations
-
-Treat maintained tests as readable accounts of behavior: explicit expectations, small
-fixtures, and simple setup. Prefer a little repetition over clever test infrastructure
-that obscures the scenario. Development probes may be disposable or implementation-
-specific. Before handoff, keep new or changed tests that can detect a meaningful
-regression or protect a behavior or boundary. Remove disposable probes and rerun
-affected checks. Tests may follow implementation.
-
-For longer functions and important entry points, a one-to-three-sentence introduction
-may frame purpose and flow even when the code is self-explanatory. Document consequential
-contracts and constraints. Local comments explain non-obvious reasoning, not the next
-line's mechanics. Keep explanations current; neither function length nor public visibility
-alone requires boilerplate documentation.
-
-Abstraction guidance draws on Ousterhout's [modular-design notes](https://web.stanford.edu/~ouster/cgi-bin/cs190-winter18/lecture.php?topic=modularDesign)
-and [Chapter 6 extract](https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf).
-These are agreed preferences, not wholesale adoption of a design book.
+Apply these agreed preferences. Abstraction guidance draws on Ousterhout's [modular-design notes](https://web.stanford.edu/~ouster/cgi-bin/cs190-winter18/lecture.php?topic=modularDesign) and [Chapter 6 extract](https://web.stanford.edu/~ouster/cgi-bin/aposd2ndEdExtract.pdf).

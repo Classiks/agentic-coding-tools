@@ -1,72 +1,31 @@
 ---
 name: guided-review
-description: Walk through changes in small confirmed portions for full code ownership or focused review, tracking coverage separately from AI verification.
+description: Guide confirmed human review of changes or hand off delegated verification.
 ---
 
 # Guided review
 
-## Set coverage and rhythm
+Resolve mode from the task and project rules. Ask if unclear before claiming completion. Private or work use does not determine mode.
 
-Resolve the mode from the task and project instructions. Ask if coverage is unknown
-before claiming review completion; private versus work use does not determine it.
-
-| Mode | Completion means |
+| Mode | Completion |
 | --- | --- |
-| Full ownership | User confirmed inspection of every changed line and artifact in scope |
-| Focused review | User confirmed selected scope; omitted changes remain outside human coverage |
-| Delegated verification | AI supplied evidence; no human inspection is claimed |
+| Full ownership | Explicit inspection confirmation for every current changed line and artifact in scope |
+| Focused review | Explicit confirmation for selected scope. Name omissions. |
+| Delegated verification | Return AI evidence and limits only. |
 
-Work rhythm, coverage, and portion size are independent. Longer autonomous work retains
-full-ownership obligations. Group by behavior and associated tests, then split into
-manageable portions. Do not distort implementation architecture for smaller review units.
-Read [interaction settings](references/interaction.md) for defaults and optional
-`Agent interaction` overrides in AGENTS.md. Prompt changes apply to the session.
+- Work rhythm, coverage, and portion size are independent. Longer autonomy retains ownership obligations. Group behavior with its tests, then split into manageable portions without reshaping code. Follow [interaction settings](references/interaction.md).
+- Verify intended behavior on the actual change before presenting it as ready. Run applicable repository checks, reuse current evidence, and rerun affected checks after edits. Disclose failed, missing, or unavailable checks before an informational tour.
+- Use [coverage and resumption](references/coverage.md) to inventory the scoped baseline and dirty diff, including staged, unstaged, and new files. Account for tests, configuration, docs, deletions, renames, and non-text changes. Full ownership includes mechanical changes.
 
-## Validate and establish scope
+## Human review portions
 
-Before presenting work as ready, verify intended behavior against the actual change
-and run applicable repository checks. Reuse current evidence and rerun affected checks
-after edits. Disclose failed, missing, or unavailable checks before an informational
-tour. Track verification independently of human confirmation. In delegated mode,
-return the evidence and its limits.
+- Give confirmed portions out of the planned total and a rounded estimate or range for effort completed and remaining. Weigh complexity, unfamiliar behavior, and discussion. Exclude the current portion until confirmed. Flag uncertain totals and re-estimate as scope, difficulty, or coverage changes.
+- Explain purpose, behavior, consequential choices, and test support. Label inference. Use the actual diff and name the complete ranges to inspect. Link start lines where supported, using baseline lines for removals. Summaries and explanations establish no coverage.
+- Name the portion and wait for explicit inspection confirmation before marking it reviewed or advancing. Resolve questions or edits first. "Reviewed, continue" suffices. Silence, praise, and quiz answers do not.
+- Tie confirmation to inspected content. Reopen coverage when content or meaning changes. Refresh inventory and evidence after edits, on resumption, and before handoff. Keep AI checks separate from confirmations.
 
-Read [coverage and resumption](references/coverage.md) to inventory the complete diff
-and track confirmations against actual content. Include tests, configuration, docs,
-new/deleted/renamed files, and non-text changes; full ownership has no mechanical-code
-exemption.
+## Finish
 
-## Present one portion
-
-Start each portion with a brief progress estimate: confirmed portions out of the current
-planned total, plus roughly how much review effort is complete and what remains.
-Weight conceptual complexity, unfamiliar behavior, and discussion so far, not just line
-or portion counts. Use a rounded estimate or range; flag an uncertain total rather than
-invent precision. For example: "2/5 portions confirmed, roughly 25-35% of review effort
-complete; the state machine and its tests are still ahead." Exclude the current portion
-until confirmed. Re-estimate when scope, difficulty, or reopened coverage changes; this
-estimate never substitutes for actual coverage.
-
-Explain purpose, behavior, consequential choices, and how tests support it. Distinguish
-observations and documented rationale from inference. Navigate with actual `file:line`
-or `file:line-range` references, using clickable start-line links where supported.
-Refer to the user's diff instead of repeating whole code blocks; use baseline-side
-references for removals. Name complete inspected ranges. A function summary alone does
-not establish inspection of its body.
-
-Offer comprehension questions selectively under the interaction settings. They are
-optional learning aids, never a gate or substitute for coverage confirmation.
-For human review, identify the portion and wait for explicit confirmation before marking
-it reviewed or moving on. A clear "reviewed, continue" suffices; silence, an explanation,
-or unrelated praise does not. Resolve questions or edits first.
-
-## Resume and finish
-
-Refresh scope and affected evidence/confirmations after edits as the coverage reference
-describes. Persist progress through project-knowledge only when continuity is needed.
-Report the mode, confirmed and pending scope, evidence, and gaps. Full ownership requires
-no unaccounted changes and confirmation for every portion.
-
-This records the user's inspection; it cannot prove comprehension or observe their eyes.
-It is an instruction-based workflow, not a technical enforcement gate.
+Report mode, confirmed and pending scope, evidence, and gaps. Save progress only when continuity needs it. Review records reported inspection. It cannot prove comprehension or enforce inspection.
 
 Explanation method adapted from [pstack teach](https://github.com/backnotprop/pstack/blob/18e0e908a13553b0e58d065ab26dbc9a972ec8ba/skills/teach/SKILL.md). MIT, see LICENSE.

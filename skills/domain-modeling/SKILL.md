@@ -1,26 +1,13 @@
 ---
 name: domain-modeling
-description: Refine domain terminology, relationships, and consequential design decisions; use for model or ADR changes, not merely reading a glossary.
+description: Refine domain terms, relationships, and design decisions. Glossary lookup alone needs no redesign.
 ---
 
 # Domain modeling
 
-For durable sources or results, use [project-knowledge](../project-knowledge/SKILL.md).
-Compare relevant terms, decisions, and code. Challenge overloaded names with concrete
-scenarios, suggest precise alternatives, and expose contradictions. Code does not
-establish desired behavior. Join an active interview rather than duplicate it.
-
-Define project-specific terms in one or two sentences. Identify confusing alternatives
-where useful, for example an invitation grants a time-limited opportunity to join;
-membership exists after acceptance. Preserve established domain-context ownership and
-link related glossaries. General programming terms need no glossary entry.
-
-Offer an ADR for a consequential tradeoff that is costly to reverse or surprising
-without context, or write one on request. Include context, actual decision, rationale,
-and useful alternatives or consequences. Mark proposals explicitly. Never infer
-historical reasons from code; link superseding decisions without erasing predecessors.
-
-Link to the glossary for terms, the specification for desired behavior, and ADRs for
-decision rationale. Follow the project's configured Markdown paths.
+- Compare terms, decisions, and code using [project-knowledge](../project-knowledge/SKILL.md) for durable sources and results. Challenge overloaded names with scenarios, propose precise alternatives, and expose contradictions. Code cannot establish intent. Join any active interview.
+- Define project terms in one or two sentences. Distinguish confusing alternatives. Skip general programming terms. Respect domain ownership and link related glossaries.
+- Offer an ADR for costly-to-reverse or surprising choices. Write one on request. Include context, decision, rationale, and relevant alternatives or consequences. Mark proposals. Preserve and link superseded decisions. Never infer historical rationale from code.
+- Link terms to the glossary, desired behavior to specs, and rationale to ADRs. Follow configured paths, including existing glossary locations.
 
 Adapted from [Matt Pocock](https://github.com/mattpocock/skills/blob/3cca18b368ae95cdbdebbff572ccafa662551015/skills/engineering/domain-modeling/SKILL.md). MIT, see LICENSE.

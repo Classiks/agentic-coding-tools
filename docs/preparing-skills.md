@@ -26,8 +26,8 @@ another attempt after inspecting the failure.
 
 ## Selection and references
 
-The output contains `<name>/SKILL.md` alongside each skill's references, license, and
-optional README. The script copies exactly the selected skills. It reports relative
+The output contains `<name>/SKILL.md` alongside any references and licenses.
+The script copies exactly the selected skills. It reports relative
 Markdown links to omitted skills, including links in supporting files, without adding
 them automatically. Read the referring instruction to decide whether that route applies.
 The report covers file links, not arbitrary prose references or host configuration.
@@ -37,9 +37,7 @@ sessions. Include the skills you need for your workflow.
 
 ## Connect to an agent host
 
-Copy the prepared folders as siblings into the host's supported skill directory. Preserve
-complete folders rather than copying SKILL.md alone. Read a skill's README, when present,
-for additional prerequisites. Preparing files does not provide external service access.
+Copy the complete prepared folders as siblings into the host's supported skill directory.
 
 Project-local `.agents/skills` is documented by both
 [Codex](https://learn.chatgpt.com/docs/build-skills) and

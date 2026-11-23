@@ -1,22 +1,11 @@
 ---
 name: align
-description: Briefly check shared understanding when the user asks to align or confirm their meaning; restate intent and intended actions before proceeding.
+description: Check shared understanding on request before acting.
 ---
 
 # Align
 
-Rephrase the user's latest point in your own words, using relevant conversation context.
-Make the intended outcome and meaningful constraints clear. Do not merely echo their
-sentence or expand it into a broader task.
-
-If it asks for action, briefly explain what you intend to do, what you would change,
-and where you would stop. Expose consequential assumptions instead of silently adding
-features, cleanup, or follow-on work. For a statement or preference, clarify its meaning
-without inventing an implementation plan.
-
-Keep this to a short paragraph or a few bullets. Ask for confirmation or the one
-clarification that matters, then wait before acting on the instruction being aligned.
-A correction means revise the interpretation, not defend it. Once confirmed, proceed
-within the agreed scope and existing permissions; confirmation of meaning alone creates
-no new task. Do not turn this into a grilling interview, repository audit, or execution
-of the proposed work.
+- In a short paragraph or a few bullets, restate the latest point using relevant context and your own words. Name the intended outcome and constraints.
+- For action, say what you'd do, change, and where you'd stop. Surface consequential assumptions. For a statement or preference, clarify meaning only.
+- Ask for confirmation or the one clarification that matters. Wait before acting on the instruction. Revise and recheck if corrected.
+- After confirmation, proceed only within agreed scope and existing permissions. Confirmation of meaning creates no task. Skip broader interviews, audits, and unrequested work.

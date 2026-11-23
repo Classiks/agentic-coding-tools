@@ -1,26 +1,20 @@
 ---
 name: reconcile-knowledge
-description: On request, reconcile documentation with current code after other contributors or suspected drift, without redefining intended behavior.
+description: Reconcile suspected documentation drift on request while preserving intended behavior.
 ---
 
 # Reconcile knowledge
 
-Use [project-knowledge](../project-knowledge/SKILL.md) to retrieve the relevant records.
-Establish the requested area and compare its requirements, terminology, ADRs, references,
-and evidence with current code, including uncommitted and new files. Use a prior
-checkpoint only if it covers that scope; disclose an absent baseline.
-
-Check both undocumented code changes and outdated documented claims:
+- Retrieve records through [project-knowledge](../project-knowledge/SKILL.md). Within requested scope, compare requirements, terms, ADRs, references, and evidence with current code, including uncommitted and new files.
+- Use only scope-matching checkpoints. Disclose a missing baseline. Look for undocumented changes and outdated claims. Age and missing access alone prove no drift.
 
 | Finding | Action |
 | --- | --- |
-| Supported descriptive drift, such as a renamed file | Update and check references |
-| Code contradicts confirmed requirements | Record a possible bug; do not redefine intent or infer permission to fix |
-| An unresolved domain choice | Present the decision needed |
-| Code contradicts an old ADR | Record the discrepancy; invent no historical rationale or accepted successor |
-| Stale test evidence or changed reviewed content | Mark affected evidence or review for reassessment |
+| Supported descriptive drift | Update and check references |
+| Code contradicts confirmed requirements | Record a possible bug. Keep requirements. Fix only with existing authority. |
+| Unresolved domain choice | Present decision needed |
+| Code contradicts old ADR | Record discrepancy. Never invent rationale or an accepted successor. |
+| Stale test evidence or changed reviewed content | Flag for reassessment |
 
-Age and missing access do not prove drift. Use project knowledge to save in-scope
-updates to the configured Markdown files. Link existing findings and report checked
-scope, code state, observations, and gaps.
-A partial reconciliation establishes neither project-wide freshness nor runtime correctness.
+- Save authorized updates at configured Markdown paths through project knowledge. Link existing findings.
+- Report checked scope, code state, observations, and gaps. Partial reconciliation establishes neither project-wide freshness nor runtime correctness.

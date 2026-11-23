@@ -1,15 +1,68 @@
 """Exercise the public preparation command against disposable repository copies."""
+import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tempfile
 import unittest
+
+try:
+    import yaml
+except ModuleNotFoundError:
+    yaml = None
 
 REPO = Path(__file__).resolve().parents[2]
 EXPECTED_SKILLS = {
     "align", "coding-principles", "diagnose-bug", "domain-modeling", "grill-with-docs",
     "grilling", "guided-review", "project-knowledge", "reconcile-knowledge", "unslop",
 }
+
+
+def read_flat_frontmatter(header):
+    """Read the repo's two-field YAML format without an external parser."""
+    fields = {}
+    for line in header.splitlines():
+        match = re.fullmatch(r"(name|description): (.+)", line)
+        if not match or not line.isprintable():
+            raise ValueError(f"Invalid frontmatter line: {line!r}")
+        key, value = match.groups()
+        if key in fields:
+            raise ValueError(f"Duplicate frontmatter field: {key}")
+        if re.fullmatch(r"'(?:[^']|'')*'", value):
+            value = value[1:-1].replace("''", "'")
+        elif value.startswith('"'):
+            value = json.loads(value)
+        elif (not re.fullmatch(r"[A-Za-z].*", value)
+              or re.search(r":(?: |$)| #", value)
+              or value.lower() in {"y", "n", "yes", "no", "on", "off", "true", "false", "null"}):
+            raise ValueError(f"Invalid plain YAML string: {value!r}")
+        fields[key] = value
+    return fields
+
+
+class SkillFrontmatterTests(unittest.TestCase):
+    def test_all_skills_have_valid_yaml_frontmatter(self):
+        paths = sorted((REPO / "skills").glob("*/SKILL.md"))
+        self.assertEqual({path.parent.name for path in paths}, EXPECTED_SKILLS)
+        for path in paths:
+            with self.subTest(skill=path.parent.name):
+                opening, _, remaining = path.read_text(encoding="utf-8").partition("\n")
+                self.assertEqual(opening, "---")
+                header, closing, _ = remaining.partition("\n---\n")
+                self.assertTrue(closing, "Missing closing YAML delimiter")
+                fields = yaml.safe_load(header) if yaml else read_flat_frontmatter(header)
+                self.assertIsInstance(fields, dict)
+                self.assertEqual(set(fields), {"name", "description"})
+                if yaml:
+                    nodes = yaml.compose(header, Loader=yaml.SafeLoader).value
+                    self.assertEqual(len(nodes), len(fields), "Duplicate YAML keys")
+                self.assertEqual(fields["name"], path.parent.name)
+                self.assertRegex(fields["name"], r"^[a-z0-9]+(?:-[a-z0-9]+)*\Z")
+                self.assertLessEqual(len(fields["name"]), 64)
+                self.assertIsInstance(fields["description"], str)
+                self.assertTrue(fields["description"].strip())
+                self.assertLessEqual(len(fields["description"]), 1024)
 
 
 class PrepareSkillsTests(unittest.TestCase):

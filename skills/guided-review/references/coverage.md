@@ -1,52 +1,8 @@
 # Coverage and resumption
 
-## Inventory the actual change
-
-Determine the intended baseline and task boundaries; do not assume HEAD~1 or that
-all dirty files belong to the task. Preserve overlapping user work and clarify it
-when ownership affects scope.
-
-With Git, inspect status, the relevant committed comparison, staged and unstaged diffs,
-and baseline-to-working-tree changes. Ordinary diffs omit new files; list them with
-`git ls-files --others --exclude-standard` and inspect separately. Include mode/type
-changes and both sides of renames/deletions. Do not stage or commit for convenience.
-
-Full ownership includes tests, config, docs, generated text, and any ignored artifacts
-that are actual deliverables. Inspect binary changes through suitable previews or tools;
-uninspectable artifacts remain coverage gaps. No mechanical-change exemption applies.
-
-## Track confirmed content
-
-Use a compact session record. When review needs to resume in a later session, use
-[project-knowledge](../../project-knowledge/SKILL.md) to save it with the local
-Markdown work item. Ordinary review can proceed without configuring storage.
-
-Record the baseline, complete inventory, mode, and for each portion:
-
-- ID, exact file ranges/artifacts, and old/new side.
-- Checkable content identity, not line numbers or timestamps alone.
-- Pending, presented, confirmed, or needs renewed review.
-- Explicit user confirmation and the content state it covered.
-- Verification evidence and gaps, separate from confirmation.
-
-Use existing versions, content digests, or snapshots for dirty states. A commit alone
-is insufficient. File digests are conservative; if one changes and the affected portion
-cannot be identified reliably, reopen that file's portions. No new service is needed.
-
-## Reassess changes and resume
-
-Before accepting confirmation, check for intervening edits. Refresh the inventory
-before later portions and final handoff. Add new changes; reopen modified portions and
-unchanged callers whose meaning changed through dependencies. Refresh affected checks.
-Preserve old confirmations as history. Pure line shifts only update navigation when
-content and meaning are demonstrably unchanged.
-
-On resumption, retrieve the record and compare actual files and requirements. Missing
-content identity or confirmation provenance means pending coverage, not reconstructed
-approval. Disclose concurrent edits that prevent a stable comparison.
-
-Full ownership finishes only when every current change is accounted for and confirmed.
-Renames need acknowledgment and removals baseline-side inspection. Disclose review
-bookkeeping without recursively reviewing its own confirmations; other docs remain
-in scope. Focused mode names omissions. Changing mode never relabels pending work as
-confirmed, and completed review grants no additional commit or acceptance authority.
+- Select the task baseline and scope. Preserve unrelated dirty changes and overlapping user work. Clarify ownership when it affects scope. Inspect status, relevant commits, staged and unstaged diffs, and the baseline-to-working-tree comparison. List untracked files with `git ls-files --others --exclude-standard`. Avoid staging or committing for review.
+- Include mode and type changes, both rename sides, generated text, and ignored deliverables. Acknowledge renames and inspect removals against the baseline. Preview binaries where possible. Record uninspectable artifacts as gaps.
+- Track baseline, inventory, and mode. For each portion record its ID, ranges or artifacts and old/new side, checkable content identity, pending/presented/confirmed/needs renewed review status, and explicit confirmation with its covered state. Record evidence and gaps separately.
+- For dirty content, use versions, digests, or snapshots. Commit IDs, line numbers, or timestamps alone cannot identify dirty content. Check for edits before accepting confirmation. Reopen unchanged callers if dependencies change their meaning. If a file digest changes and impact is unclear, reopen its portions. Preserve confirmation history. Pure line shifts only change navigation if content and meaning match.
+- Keep a session record without setup. For later sessions, save and retrieve it with [project-knowledge](../../project-knowledge/SKILL.md). Compare actual files and requirements. Treat missing content identity or confirmation provenance as pending. Disclose concurrent edits that prevent comparison.
+- Add new changes to the inventory. Disclose review bookkeeping without recursively reviewing its confirmations. Keep other docs in scope. Mode changes preserve actual coverage. Completion grants no commit or acceptance authority.
